@@ -1,0 +1,56 @@
+﻿@model IEnumerable<EM.Models.CompanyDocumentMetadata>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Company.CompanyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.AspNetUser.Email)
+            </th>*@
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company.CompanyName)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.DocumentName)*@
+                @Html.DisplayFor(modelItem => item.CompanyDocumentsType.DocumentTypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                </td>*@
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                @Html.ActionLink("Manage Documents Values", "ConfigureDocumentValues", new { CompanyId = item.CompanyId, CompanyDocumentId = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

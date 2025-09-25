@@ -1,0 +1,156 @@
+﻿@model EM.Models.Entities.EmployeeMetadata
+
+<div class="container-fluid mt-3">
+    @using (Html.BeginForm("PersonalDetails", "EmployeeV1", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.UserId)
+        @Html.HiddenFor(model => model.CompanyId)
+
+        <h1>Personal Information</h1>
+        <p>Fill all your personal details as per documents</p>
+        <div class="row">
+            <div class="col-6 p-3">
+                <div class="form-floating">
+                    @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                    @Html.LabelFor(m => m.FullName, new { @for = "FullName" })
+                </div>
+
+                <br />
+
+                <div class="form-floating">
+                    <div class="col-12">
+                        @Html.LabelFor(m => m.Gender, new { @for = "Gender" })
+                        <label class="radio-inline form-control">
+                            <input type="radio" name="Gender" value="Male">Male
+                            <input type="radio" name="Gender" value="Female">Female
+                        </label>
+
+                        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="form-floating">
+                    <input type="date" name="DateOfBirth" required class="form-control"/>
+                    @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.DateOfBirth, new { @for = "DateOfBirth" })
+                </div>
+
+                <br />
+
+                <div class="form-floating">
+                    @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.Mobile, new { @for = "Mobile" })
+                </div>
+
+                <br />
+
+                <div class="form-floating">
+                    @Html.EditorFor(model => model.AlternateMobile, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AlternateMobile, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.AlternateMobile, new { @for = "AlternateMobile" })
+                </div>
+
+                <br />
+
+                <div class="form-floating">
+                    @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.EmailId, new { @for = "EmailId" })
+                </div>
+
+                <br />
+
+                <div class="form-floating">
+                    @Html.EditorFor(model => model.AlternateEmailId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AlternateEmailId, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.AlternateEmailId, new { @for = "AlternateEmailId" })
+                </div>
+
+                <br />
+            </div>
+            <div class="col-6 p-3">
+                <div class="form-floating">
+                    @Html.EditorFor(model => model.CurrentAddress, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CurrentAddress, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.CurrentAddress, new { @for = "CurrentAddress" })
+                </div>
+
+                <br />
+
+                <div class="form-floating">
+                    @Html.EditorFor(model => model.PermanentAddress, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PermanentAddress, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.PermanentAddress, new { @for = "PermanentAddress" })
+                </div>
+
+                <br />
+
+                <div class="form-floating">
+                    @Html.DropDownList("BloodGroup", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.BloodGroup, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.BloodGroup, new { @for = "BloodGroup" })
+                </div>
+
+                <br />
+
+                <div class="form-floating">
+                    @Html.EditorFor(model => model.PAN, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PAN, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.PAN, new { @for = "PAN" })
+                </div>
+
+                <br />
+
+                <div class="form-floating">
+                    @Html.EditorFor(model => model.Adhaar, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Adhaar, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.Adhaar, new { @for = "Adhaar" })
+                </div>
+
+                <br />
+
+                <div class="form-floating">
+                    @Html.EditorFor(model => model.UAN, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UAN, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.UAN, new { @for = "UAN" })
+                </div>
+
+                <br />
+
+                @if (Model == null || Model.Photo == null)
+                {
+                    <div class="form-floating">
+                        <input type="file" name="ImageFile" class="form-control" />
+                        @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Photo, new { @for = "Photo" })
+                    </div>
+                }
+                else
+                {
+                    <div class="form-floating">
+                        <input type="file" name="ImageFile" class="form-control" />
+                        @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Photo, new { @for = "Photo" })
+                        @{
+                            var base64 = Convert.ToBase64String(Model.Photo);
+                            var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+                            <img id="ItemPreview" src="@imgSrc" height="100" width="100" />
+                        }
+                    </div>
+                }
+
+                <br />
+            </div>
+        </div>
+
+        <div class="form-floating">
+            <input type="submit" value="Save Personal Information" class="btn btn-primary float-end" />
+        </div>
+    }
+</div>

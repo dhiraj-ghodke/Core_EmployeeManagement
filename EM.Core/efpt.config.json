@@ -1,0 +1,130 @@
+﻿{
+   "CodeGenerationMode": 4,
+   "ContextClassName": "EmployeeDBContext",
+   "ContextNamespace": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "MinimumProductVersion": "2.6.0",
+   "ModelNamespace": null,
+   "OutputContextPath": "Models",
+   "OutputPath": "Models\/Entities",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "EM.Core",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 2,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "[dbo].[AspNetRoles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AspNetUserClaims]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AspNetUserLogins]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AspNetUserRoles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AspNetUsers]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Batch]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Company]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[CompanyDocumentConfigurableValues]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[CompanyDocuments]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[CompanyDocumentsType]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Employee]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[EmployeeBankAccount]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[EmployeeEducation]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[EmployeeEducationType]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[EmployeeExperiece]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[EmployeeIncrement]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[EmployeeInterviews]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[EmployeeITExperience]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[EmployeeResignation]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Team]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[UserRoles]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": null,
+   "UncountableWords": null,
+   "UseAsyncStoredProcedureCalls": true,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": true,
+   "UseDatabaseNamesForRoutines": true,
+   "UseDateOnlyTimeOnly": true,
+   "UseDbContextSplitting": false,
+   "UseDecimalDataAnnotationForSprocResult": true,
+   "UseFluentApiOnly": false,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseInternalAccessModifiersForSprocsAndFunctions": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UsePrefixNavigationNaming": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false,
+   "UseT4Split": false
+}

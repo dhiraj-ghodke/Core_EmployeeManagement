@@ -1,0 +1,70 @@
+﻿@model EM.Models.EmployeeEducationMetadata
+
+<div class="container-fluid mt-3">
+    @using (Html.BeginForm("EducationalDetails", "EmployeeV1", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <h1>Educational Information</h1>
+        <p>Fill all your educational details as per documents</p>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <br />
+        <div id="newCreateEducation">
+            <div class="row">
+                <div class="col-6 p-3">
+                    <div class="form-floating">
+                        @Html.DropDownList("EducationTypeId", (IEnumerable<SelectListItem>)ViewBag.EducationTypeIdList, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.EducationTypeId, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.EducationTypeId, "EducationTypeId", new { @for = "EducationTypeId" })
+                    </div>
+                    <div class="form-floating">
+                        @Html.EditorFor(model => model.PassoutYear, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PassoutYear, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.PassoutYear, new { @for = "PassoutYear" })
+                    </div>
+                </div>
+                <div class="col-6 p-3">
+                    <div class="form-floating">
+                        @Html.EditorFor(model => model.Specialization, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Specialization, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Specialization, new { @for = "Specialization" })
+                    </div>
+                    <div class="form-floating">
+                        @Html.EditorFor(model => model.Percentage, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Percentage, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Percentage, new { @for = "Percentage" })
+                    </div>
+                    <div class="form-floating">
+                        @Html.EditorFor(model => model.CollegeName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CollegeName, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.CollegeName, new { @for = "CollegeName" })
+                    </div>
+                </div>
+            </div>
+            <hr />
+        </div>
+        <input type="button" id="btnAddEducation" value="Add new education form" class="form-control btn btn-success float-end" />
+        <br /><br />
+        <div class="form-floating">
+            <input type="submit" value="Save Educational Details" class="btn btn-primary float-end" />
+        </div>
+
+    }
+</div>
+
+<script>
+    $(function () {
+        // $('#newEducation').show();
+        $("#btnAddEducation").click(function () {
+            var div = $("#newCreateEducation").html();
+            if (sessionStorage.getItem('newCreateEducation') == null ||
+                sessionStorage.getItem('newCreateEducation') == undefined) {
+                sessionStorage.setItem('newCreateEducation', div);
+            }
+
+            $("#newCreateEducation").append(sessionStorage.getItem('newCreateEducation'));
+        });
+    });
+</script>

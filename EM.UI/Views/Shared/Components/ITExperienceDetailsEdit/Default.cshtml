@@ -1,0 +1,282 @@
+﻿@model EM.Models.EmployeeITExperienceMetadata
+
+<div class="container-fluid mt-3">
+    @if (Model != null)
+    {
+        using (Html.BeginForm("ITExperienceDetails", "EmployeeV1", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <h1>IT Experience Information</h1>
+            <p>Fill your required IT experience details for documentation</p>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div>
+                <div class="row">
+                    @Html.HiddenFor(model => model.ExperienceId)
+                    <div class="col-6 p-3">
+                        <div class="form-floating">
+                            @Html.DropDownList("BatchId",
+                            ((IEnumerable<SelectListItem>)ViewBag.BatchIdList).
+                            Select(bi =>
+                            {
+                                if (bi.Value.Equals(Model.BatchId.ToString()))
+                                {
+                                    return new SelectListItem()
+                                    {
+                                        Value = bi.Value,
+                                        Text = bi.Text,
+                                        Selected = true
+                                    };
+                                }
+                                else
+                                {
+                                    return bi;
+                                }
+                            })
+                                        , htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.BatchId, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.BatchId, new { @for = "BatchId" })
+                </div>
+                <br />
+                <div class="form-floating">
+                    @Html.DropDownList("TeamId",
+                                        ((IEnumerable<SelectListItem>)ViewBag.TeamIdList).
+                                        Select(bi =>
+                                        {
+                                            if (bi.Value.Equals(Model.TeamId.ToString()))
+                                            {
+                                                return new SelectListItem()
+                                                {
+                                                    Value = bi.Value,
+                                                    Text = bi.Text,
+                                                    Selected = true
+                                                };
+                                            }
+                                            else
+                                            {
+                                                return bi;
+                                            }
+                                        })
+                                        , htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TeamId, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.TeamId, new { @for = "TeamId" })
+                </div>
+                <br />
+                <div class="form-floating">
+                    @Html.EditorFor(model => model.ProjectName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.ProjectName, new { @for = "ProjectName" })
+                </div>
+                <br />
+                <div class="form-floating">
+                    @Html.EditorFor(model => model.ProjectTechnologies, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProjectTechnologies, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.ProjectTechnologies, new { @for = "ProjectTechnologies" })
+                </div>
+                <br />
+                <div class="form-floating">
+                    @Html.EditorFor(model => model.ProjectDescription, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProjectDescription, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.ProjectDescription, new { @for = "ProjectDescription" })
+                </div>
+                <br />
+            </div>
+            <div class="col-6 p-3">
+                <div class="form-floating">
+                    @*@Html.EditorFor(model => model.JoiningDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })*@
+                    <input type="date" name="JoiningDate" required class="form-control" value='@Model.JoiningDate.Value.ToString("yyyy-MM-dd")' />
+                    @Html.ValidationMessageFor(model => model.JoiningDate, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.JoiningDate, new { @for = "JoiningDate" })
+                </div>
+                <br />
+                <div class="form-floating">
+                    @Html.EditorFor(model => model.JoiningSalary, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.JoiningSalary, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.JoiningSalary, new { @for = "JoiningSalary" })
+                </div>
+                <br />
+                <div class="form-floating">
+                    @Html.EditorFor(model => model.JoiningDesignation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.JoiningDesignation, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.JoiningDesignation, new { @for = "JoiningDesignation" })
+                </div>
+                <br />
+                <div class="form-floating">
+                    @Html.EditorFor(model => model.CurrentSalary, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CurrentSalary, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.CurrentSalary, new { @for = "CurrentSalary" })
+                </div>
+                <br />
+                <div class="form-floating">
+                    @Html.EditorFor(model => model.CurrentDesignation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CurrentDesignation, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.CurrentDesignation, new { @for = "CurrentDesignation" })
+                </div>
+                <br />
+                <div class="form-floating">
+                    @Html.DropDownList("BankAccountId",
+                                        ((IEnumerable<SelectListItem>)ViewBag.AccountIdList).
+                                        Select(exp =>
+                                        {
+                                            if (exp.Value.Equals(Model.BankAccountId.ToString()))
+                                            {
+                                                return new SelectListItem()
+                                                {
+                                                    Value = exp.Value,
+                                                    Text = exp.Text,
+                                                    Selected = true
+                                                };
+                                            }
+                                            else
+                                            {
+                                                return exp;
+                                            }
+                                        }),
+                                        htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => Model.BankAccountId, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => Model.BankAccountId, new { @for = "AccountId" })
+                </div>
+                <br />
+                @*<div class="form-floating">
+                            @Html.ActionLink("Click to view increments", "EmployeeIncrementViewEdit", "EmployeeV1", new { userId = string.Empty }, new { @class = "modalPopup" })
+                        </div>*@
+            </div>
+        </div>
+
+        <div class="form-floating">
+            <input type="submit" value="Save IT Experience Details" class="btn btn-primary float-end" />
+        </div>
+    </div>
+        }
+        <br />
+    
+        <br />
+    }
+    else
+    {
+        using (Html.BeginForm("ITExperienceDetails", "EmployeeV1", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <h1>IT Experience Information</h1>
+            <p>Fill your required IT experience details for documentation</p>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div>
+                <div class="row">
+                    <div class="col-6 p-3">
+                        <div class="form-floating">
+                            @Html.DropDownList("BatchId", (IEnumerable<SelectListItem>)ViewBag.BatchIdList, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.BatchId, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.BatchId, new { @for = "BatchId" })
+                        </div>
+                        <br />
+                        <div class="form-floating">
+                            @Html.DropDownList("TeamId", (IEnumerable<SelectListItem>)ViewBag.TeamIdList, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.TeamId, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.TeamId, new { @for = "TeamId" })
+                        </div>
+                        <br />
+                        <div class="form-floating">
+                            @Html.EditorFor(model => model.ProjectName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.ProjectName, new { @for = "ProjectName" })
+                        </div>
+                        <br />
+                        <div class="form-floating">
+                            @Html.EditorFor(model => model.ProjectTechnologies, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ProjectTechnologies, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.ProjectTechnologies, new { @for = "ProjectTechnologies" })
+                        </div>
+                        <br />
+                        <div class="form-floating">
+                            @Html.EditorFor(model => model.ProjectDescription, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ProjectDescription, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.ProjectDescription, new { @for = "ProjectDescription" })
+                        </div>
+                        <br />
+                    </div>
+                    <div class="col-6 p-3">
+                        <div class="form-floating">
+                            @Html.EditorFor(model => model.JoiningDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                            @Html.ValidationMessageFor(model => model.JoiningDate, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.JoiningDate, new { @for = "JoiningDate" })
+                        </div>
+                        <br />
+                        <div class="form-floating">
+                            @Html.EditorFor(model => model.JoiningSalary, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.JoiningSalary, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.JoiningSalary, new { @for = "JoiningSalary" })
+                        </div>
+                        <br />
+                        <div class="form-floating">
+                            @Html.EditorFor(model => model.JoiningDesignation, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.JoiningDesignation, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.JoiningDesignation, new { @for = "JoiningDesignation" })
+                        </div>
+                        <br />
+                        <div class="form-floating">
+                            @Html.EditorFor(model => model.CurrentSalary, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CurrentSalary, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.CurrentSalary, new { @for = "CurrentSalary" })
+                        </div>
+                        <br />
+                        <div class="form-floating">
+                            @Html.EditorFor(model => model.CurrentDesignation, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CurrentDesignation, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.CurrentDesignation, new { @for = "CurrentDesignation" })
+                        </div>
+                        <br />
+                        @*<div class="form-floating">
+            @Html.ActionLink("Click to add increments", "EmployeeIncrementView", "EmployeeV1", new { userId = string.Empty }, new { @class = "modalPopup" })
+        </div>*@
+                        <div class="form-floating">
+                            @Html.DropDownList("BankAccountId", (IEnumerable<SelectListItem>)ViewBag.AccountIdList, "-- Select Bank Account --", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.BankAccountId, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.BankAccountId, new { @for = "AccountId" })
+                        </div>
+                        <br />
+                    </div>
+                </div>
+
+                <div class="form-floating">
+                    <input type="submit" value="Save IT Experience Details" class="btn btn-primary float-end" />
+                </div>
+                <br /><br />
+            </div>
+        }
+        <br />
+    
+        <br />
+    }
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+}
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('.modalPopup').click(function () {
+
+            $('<div/>').appendTo('body').dialog({
+                close: function (event, ui) {
+                    //dialog.remove();
+                },
+                modal: true
+            }).load(this.href, {});
+
+            $('.ui-dialog').css({
+                'width': '80%',
+                'left': '10%',
+                'top': '10%'
+            });
+
+            return false;
+        });
+    });
+</script>
+

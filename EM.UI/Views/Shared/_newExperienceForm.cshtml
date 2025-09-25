@@ -1,0 +1,64 @@
+﻿@model EM.Models.EmployeeExperieceMetadata
+
+<div class="row">
+    <div class="col-6 p-3">
+        <div class="form-floating">
+            @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.CompanyName, new { @for = "CompanyName" })
+        </div>
+        <br />
+
+        <div class="form-floating">
+            <input type="date" name="JoiningDate" required class="form-control" />
+            @Html.ValidationMessageFor(model => model.JoiningDate, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.JoiningDate, new { @for = "JoiningDate" })
+        </div>
+        <br />
+
+        <div class="form-floating">
+            <input type="date" name="RelivingDate" required class="form-control" />
+            @Html.ValidationMessageFor(model => model.RelivingDate, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.RelivingDate, new { @for = "RelivingDate" })
+        </div>
+        <br />
+
+        <div class="form-floating">
+            @Html.EditorFor(model => model.CurrentCTC, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CurrentCTC, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.CurrentCTC, new { @for = "CurrentCTC" })
+        </div>
+        <br />
+    </div>
+    <div class="col-6 p-3">
+        <div class="form-floating">
+            <div class="col-12">
+                @Html.LabelFor(model => model.IsPFOpted, new { @for = "IsPFOpted" })
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsPFOpted, "item.IsPFOpted", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IsPFOpted, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="form-floating">
+            <div class="col-12">
+                @Html.LabelFor(model => model.IsAllDocumentsAvailable, "item.IsAllDocumentsAvailable", new { @for = "IsAllDocumentsAvailable" })
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsAllDocumentsAvailable, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IsAllDocumentsAvailable, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="form-floating">
+            @Html.DropDownList("AccountId", (IEnumerable<SelectListItem>)ViewBag.AccountIdList, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.AccountId, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.AccountId, new { @for = "AccountId" })
+        </div>
+        <br />
+
+    </div>
+</div>

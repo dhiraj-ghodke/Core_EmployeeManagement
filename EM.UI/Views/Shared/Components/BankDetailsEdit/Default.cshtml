@@ -1,0 +1,107 @@
+﻿@using EM.Models;
+@model IEnumerable<EM.Models.EmployeeBankAccountMetadata>
+
+<div class="container-fluid mt-3">
+    @if (Model != null && Model.Count() > 0)
+    {
+        using (Html.BeginForm("BankDetails", "EmployeeV1", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <h1>Bank Account Information</h1>
+            <p>Fill all your existing bank account details as per documents</p>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div id="rowBank">
+                @foreach (var item in Model)
+                {
+                    <div class="row">
+                        <input type="hidden" name="AccountId" value="@item.AccountId" />
+                        <div class="col-3">
+                            <div class="form-floating">
+                                @*@Html.EditorFor(model => item.BankName, new { htmlAttributes = new { @class = "form-control" } })*@
+                                <input type="text" class="form-control" name="BankName" value="@item.BankName" />
+                                @Html.ValidationMessageFor(model => item.BankName, "", new { @class = "text-danger" })
+                                @Html.LabelFor(model => item.BankName, new { @for = "BankName" })
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-floating">
+                                @*@Html.EditorFor(model => item.BranchName, new { htmlAttributes = new { @class = "form-control" } })*@
+                                <input type="text" class="form-control" name="BranchName" value="@item.BranchName" />
+                                @Html.ValidationMessageFor(model => item.BranchName, "", new { @class = "text-danger" })
+                                @Html.LabelFor(model => item.BranchName, new { @for = "BranchName" })
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-floating">
+                                @*@Html.EditorFor(model => item.AccountNumber, new { htmlAttributes = new { @class = "form-control" } })*@
+                                <input type="text" class="form-control" name="AccountNumber" value="@item.AccountNumber" />
+                                @Html.ValidationMessageFor(model => item.AccountNumber, "", new { @class = "text-danger" })
+                                @Html.LabelFor(model => item.AccountNumber, new { @for = "AccountNumber" })
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="form-floating">
+                                @*@Html.EditorFor(model => item.IFSCCode, new { htmlAttributes = new { @class = "form-control" } })*@
+                                <input type="text" class="form-control" name="IFSCCode" value="@item.IFSCCode" />
+                                @Html.ValidationMessageFor(model => item.IFSCCode, "", new { @class = "text-danger" })
+                                @Html.LabelFor(model => item.IFSCCode, new { @for = "IFSCCode" })
+                            </div>
+                        </div>
+                        <div class="col-1">
+                            <div class="form-floating">
+                                @Html.ActionLink("remove", "DeleteBankDetails", new { accountId = item.AccountId })
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                }
+            </div>
+            <br />
+
+            <br />
+            <input type="button" id="btnAddMainBank" value="Click to add new account" class="form-control btn btn-info float-start" />
+            <br />
+
+            <br />
+            <div class="form-floating float-end">
+                <input type="submit" value="Save Bank Details" class="btn btn-success" />
+            </div>
+            <br />
+
+            <br />
+        }
+    }
+    else
+    {
+        <h3>Fill all your bank account details as per documents</h3>
+        @*@Html.ActionLink("Bank Account Details", "BankDetails", "EmployeeV1", null, new { @class = "nav-link active", ariaCurrent = "page" })*@
+
+        @Html.Partial("_CreateBankDetails", new EmployeeBankAccountMetadata())
+        <br />
+    
+        <br />
+    }
+</div>
+
+<script>
+    $("#btnAddMainBank").click(function () {
+
+        //var div = $("#rowBank").html();
+        //if (sessionStorage.getItem('bankForm') == null ||
+        //    sessionStorage.getItem('bankForm') == undefined) {
+        //    sessionStorage.setItem('bankForm', div);
+        //}
+
+        $.get("BankNewForm", function (div) {
+            if (sessionStorage.getItem('bankForm') == null ||
+                sessionStorage.getItem('bankForm') == undefined) {
+                sessionStorage.setItem('bankForm', div);
+            }
+        }, 'html');
+
+        $("#rowBank").append(sessionStorage.getItem('bankForm'));
+    });
+</script>

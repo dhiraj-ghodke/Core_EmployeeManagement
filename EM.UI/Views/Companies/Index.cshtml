@@ -1,0 +1,90 @@
+﻿@model IEnumerable<EM.Models.CompanyMetadata>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManagerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManagerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManagerMobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManagerOfficialEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HRId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HRName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HRMobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HROfficialEmail)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManagerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManagerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManagerMobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManagerOfficialEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HRId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HRName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HRMobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HROfficialEmail)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CompanyId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CompanyId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CompanyId }) |
+                @Html.ActionLink("Manage Company Documents", "Index", "CompanyDocuments")
+            </td>
+        </tr>
+    }
+
+</table>

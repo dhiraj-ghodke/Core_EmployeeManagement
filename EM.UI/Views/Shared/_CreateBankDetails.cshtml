@@ -1,0 +1,73 @@
+﻿@model EM.Models.EmployeeBankAccountMetadata
+
+<div class="container-fluid mt-3">
+
+    @using (Html.BeginForm("BankDetails", "EmployeeV1", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <h1>Bank Account Information</h1>
+        <p>Fill all your existing bank account details as per documents</p>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div id="rowCreateBank">
+            <div class="row">
+                <div class="col-3">
+                    <div class="form-floating">
+                        @Html.EditorFor(model => model.BankName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BankName, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.BankName, new { @for = "BankName" })
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-floating">
+                        @Html.EditorFor(model => model.BranchName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BranchName, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.BranchName, new { @for = "BranchName" })
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-floating">
+                        @Html.EditorFor(model => model.AccountNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AccountNumber, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.AccountNumber, new { @for = "AccountNumber" })
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-floating">
+                        @Html.EditorFor(model => model.IFSCCode, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.IFSCCode, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.IFSCCode, new { @for = "IFSCCode" })
+                    </div>
+                </div>
+            </div>
+            <hr />
+        </div>
+        <br /><br />
+        <input type="button" id="btnAddBank" value="Click to add new account" class="form-control btn btn-info float-start" />
+        <br /><br />
+        <div class="form-floating float-end">
+            <input type="submit" value="Save Bank Details" class="btn btn-success" />
+        </div>
+    }
+</div>
+
+<script>
+    $("#btnAddBank").click(function () {
+        var div = $("#rowCreateBank").html();
+        if (sessionStorage.getItem('bankCreateForm') == null ||
+            sessionStorage.getItem('bankCreateForm') == undefined) {
+            sessionStorage.setItem('bankCreateForm', div);
+        }
+
+        //$.get("BankNewForm", function (div) {
+        //    if (sessionStorage.getItem('bankCreateForm') == null ||
+        //        sessionStorage.getItem('bankCreateForm') == undefined) {
+        //        sessionStorage.setItem('bankCreateForm', div);
+        //    }
+        //}, 'html');    
+
+        $("#rowCreateBank").append(sessionStorage.getItem('bankCreateForm'));
+    });
+</script>

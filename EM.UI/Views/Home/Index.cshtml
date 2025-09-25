@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Employee Management Portal</h1>
+    <p class="lead">This portal helps Employee, HR and Admin users to maintain their organization data. It contains basic information of employees along with all his employment history within organization.</p>
+    <p>@Html.ActionLink("Register & Explore", "Register", "Account", null, new { @class = "btn btn-warning btn-lg" })</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Employee Login</h2>
+        <p>
+            Employee can maintain his own experience profile. Employee can download all company experience related documents
+            like offer letter, salary certificates, increment letters, experience letters, etc. Employee can also do separation
+            formalities through this portal.
+        </p>
+        <p>@Html.ActionLink("Explore", "Register", "Account", null, new { @class = "btn btn-primary btn-lg" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2>HR Login</h2>
+        <p>
+            HR maintains all employee data like entire employee profile. HR can upload offer letters or complete exit formalities
+            through this portal. HR has all rights to update any employee profile if needed.
+        </p>
+        <p>@Html.ActionLink("Explore", "Register", "Account", null, new { @class = "btn btn-primary btn-lg" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Admin Login</h2>
+        <p>
+            Admin maintains all users login and roles. Admin can add or remove any roles from system. Admin has all rights
+            to grant or revoke any authorization to this portal features.
+        </p>
+        <p>@Html.ActionLink("Explore", "Register", "Account", null, new { @class = "btn btn-primary btn-lg" })</p>
+    </div>
+</div>

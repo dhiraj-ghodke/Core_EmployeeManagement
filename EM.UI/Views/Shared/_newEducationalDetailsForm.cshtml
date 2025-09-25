@@ -1,0 +1,34 @@
+﻿@model EM.Models.EmployeeEducationMetadata
+
+<div class="row">
+    <div class="col-6 p-3">
+        <div class="form-floating">
+            @Html.DropDownList("EducationTypeId", (IEnumerable<SelectListItem>)ViewBag.EducationTypeIdList, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EducationTypeId, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.EducationTypeId, "EducationTypeId", new { @for = "EducationTypeId" })
+        </div>
+        <div class="form-floating">
+            @Html.EditorFor(model => model.PassoutYear, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PassoutYear, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.PassoutYear, new { @for = "PassoutYear" })
+        </div>
+    </div>
+    <div class="col-6 p-3">
+        <div class="form-floating">
+            @Html.EditorFor(model => model.Specialization, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Specialization, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.Specialization, new { @for = "Specialization" })
+        </div>
+        <div class="form-floating">
+            @Html.EditorFor(model => model.Percentage, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Percentage, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.Percentage, new { @for = "Percentage" })
+        </div>
+        <div class="form-floating">
+            @Html.EditorFor(model => model.CollegeName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CollegeName, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.CollegeName, new { @for = "CollegeName" })
+        </div>
+    </div>
+    <hr />
+</div>

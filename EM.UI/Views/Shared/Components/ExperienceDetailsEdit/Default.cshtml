@@ -1,0 +1,152 @@
+﻿@using EM.Models;
+@model IEnumerable<EM.Models.EmployeeExperieceMetadata>
+
+<div class="container-fluid mt-3">
+
+    @if (Model != null && Model.Count() > 0)
+    {
+        using (Html.BeginForm("ExperienceDetails", "EmployeeV1", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <h1>Previous Experience Information <small class="text-danger">*Ignore if not worked previously</small></h1>
+            <h3>Previous experience worked before joining course</h3>
+            <p>Fill all your previous experience details as per your work profiles</p>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div id="rowExperience">
+                @foreach (var item in Model)
+                {
+                    <div class="row">
+                        <input type="hidden" name="ExperienceId" value="@item.ExperienceId" />
+                        <div class="col-6 p-3">
+                            <div class="form-floating">
+                                @*@Html.EditorFor(model => item.CompanyName, new { htmlAttributes = new { @class = "form-control" } })*@
+                                <input type="text" class="form-control" name="CompanyName" value="@item.CompanyName" />
+                                @Html.ValidationMessageFor(model => item.CompanyName, "", new { @class = "text-danger" })
+                                @Html.LabelFor(model => item.CompanyName, new { @for = "CompanyName" })
+                            </div>
+                            <br />
+
+                            <div class="form-floating">
+                                <input type="date" name="JoiningDate" required class="form-control" value='@item.JoiningDate.Value.ToString("yyyy-MM-dd")' />
+                                @Html.ValidationMessageFor(model => item.JoiningDate, "", new { @class = "text-danger" })
+                                @Html.LabelFor(model => item.JoiningDate, new { @for = "JoiningDate" })
+                            </div>
+                            <br />
+
+                            <div class="form-floating">
+                                <input type="date" name="RelivingDate" required class="form-control" value='@item.RelivingDate.Value.ToString("yyyy-MM-dd")' />
+                                @Html.ValidationMessageFor(model => item.RelivingDate, "", new { @class = "text-danger" })
+                                @Html.LabelFor(model => item.RelivingDate, new { @for = "RelivingDate" })
+                            </div>
+                            <br />
+
+                            <div class="form-floating">
+                                @*@Html.EditorFor(model => item.CurrentCTC, new { htmlAttributes = new { @class = "form-control" } })*@
+                                <input type="text" class="form-control" name="CurrentCTC" value="@item.CurrentCTC" />
+                                @Html.ValidationMessageFor(model => item.CurrentCTC, "", new { @class = "text-danger" })
+                                @Html.LabelFor(model => item.CurrentCTC, new { @for = "CurrentCTC" })
+                            </div>
+                            <br />
+                        </div>
+                        <div class="col-5 p-3">
+                            <div class="form-floating">
+                                <div class="col-12">
+                                    @Html.LabelFor(model => item.IsPFOpted, new { @for = "IsPFOpted" })
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => item.IsPFOpted, "IsPFOpted", new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => item.IsPFOpted, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+
+                            <div class="form-floating">
+                                <div class="col-12">
+                                    @Html.LabelFor(model => item.IsAllDocumentsAvailable, new { @for = "IsAllDocumentsAvailable" })
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => item.IsAllDocumentsAvailable, "IsAllDocumentsAvailable", new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => item.IsAllDocumentsAvailable, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+
+                            <div class="form-floating">
+                                @Html.DropDownList("AccountId",
+                                ((IEnumerable<SelectListItem>)ViewBag.AccountIdList).
+                                Select(exp =>
+                                {
+                                    if (exp.Value.Equals(item.AccountId.ToString()))
+                                    {
+                                        return new SelectListItem()
+                                        {
+                                            Value = exp.Value,
+                                            Text = exp.Text,
+                                            Selected = true
+                                        };
+                                    }
+                                    else
+                                    {
+                                        return exp;
+                                    }
+                                }), "-- Select Bank Account --",
+                                        htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => item.AccountId, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => item.AccountId, new { @for = "AccountId" })
+                </div>
+                <br />
+
+            </div>
+            <div class="col-1 p-3">
+                <div class="form-floating">
+                    @Html.ActionLink("remove", "DeleteExperience", new { experienceId = item.ExperienceId })
+                </div>
+            </div>
+        </div>
+        <hr />
+                }
+            </div>
+
+            <input type="button" id="btnAddMainExperience" value="Click to add new experience" class="form-control btn btn-success" />
+            <br />
+
+            <br />
+            <div class="form-floating">
+                <input type="submit" value="Save Experience Details" class="btn btn-primary float-end" />
+            </div>
+            <br />
+
+            <br />
+        }
+    }
+    else
+    {
+        <h3>Fill your required previous experience details for documentation</h3>
+        @Html.Partial("_CreateExperienceDetails", new EmployeeExperieceMetadata())
+        <br />
+    
+        <br />
+    }
+</div>
+
+<script>
+    $("#btnAddMainExperience").click(function () {
+        //var div = $("#rowExperience").html();
+        //if (sessionStorage.getItem('bankExperience') == null ||
+        //    sessionStorage.getItem('bankExperience') == undefined) {
+        //    sessionStorage.setItem('bankExperience', div);
+        //}
+
+        $.get("ExperienceNewForm", function (div) {
+            if (sessionStorage.getItem('bankExperience') == null ||
+                sessionStorage.getItem('bankExperience') == undefined) {
+                sessionStorage.setItem('bankExperience', div);
+            }
+        }, 'html');
+
+        $("#rowExperience").append(sessionStorage.getItem('bankExperience'));
+    });
+</script>

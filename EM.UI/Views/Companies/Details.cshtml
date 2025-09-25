@@ -1,0 +1,107 @@
+﻿@model EM.Models.CompanyMetadata
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Company</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ManagerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ManagerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ManagerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ManagerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ManagerMobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ManagerMobile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ManagerOfficialEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ManagerOfficialEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HRId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HRId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HRName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HRName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HRMobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HRMobile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HROfficialEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HROfficialEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @ViewBag.CompanyCreator
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CompanyId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

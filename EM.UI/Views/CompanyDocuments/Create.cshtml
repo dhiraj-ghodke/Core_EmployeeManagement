@@ -1,0 +1,70 @@
+﻿@model EM.Models.CompanyDocumentMetadata
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm("Create", "CompanyDocuments", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>CompanyDocument</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CompanyId, "CompanyId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("CompanyId", (IEnumerable<SelectListItem>)ViewBag.CompanyIdList, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CompanyId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DocumentName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.DocumentName, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.DropDownList("DocumentName", (IEnumerable<SelectListItem>)ViewBag.DocumentType, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DocumentName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DocumentPath, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.DocumentPath, new { htmlAttributes = new { @class = "form-control" } })*@
+                <input type="file" name="DocumentFile" />
+                @Html.ValidationMessageFor(model => model.DocumentPath, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreatedBy, "CreatedBy", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("CreatedBy", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@* @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+} *@
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
